@@ -1,6 +1,7 @@
 // 创建router实例，给main使用
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 
 import Login from '@/views/login'
 import Home from '@/views/home'
@@ -24,6 +25,15 @@ const router = new VueRouter({
     },
     { path: '*', name: '404', component: NotFound }
   ]
+})
+
+// 前置守卫
+router.beforeEach((to, from, next) => {
+  // if (to.path === '/login') return next()
+  // if (!store.getUser().token) return next('login')
+  // next()
+  if (to.path !== '/login' && !store.getUser().token) return next('/login')
+  next()
 })
 
 export default router
