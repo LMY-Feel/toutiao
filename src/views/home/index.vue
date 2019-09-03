@@ -4,8 +4,9 @@
       <!-- logo -->
       <div class="logo" :class="{miniLogo:isCollapse}"></div>
       <!-- 导航菜单 -->
+      <!-- 处于什么业务，激活什么菜单 -->
       <el-menu
-        default-active="/"
+        :default-active="$route.path"
         class="el-menu-vertical-demo"
         background-color="#002033"
         text-color="#fff"
